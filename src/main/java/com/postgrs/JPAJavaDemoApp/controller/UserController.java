@@ -42,4 +42,8 @@ public class UserController {
             return new ResponseEntity<ResponseCallBack>(new ResponseCallBack(HttpStatus.BAD_REQUEST.value(), "user register failed", "email found "), HttpStatus.BAD_REQUEST);
 
     }
+
+//    public ResponseEntity<RegisterModel> login() {
+//      userService.findByEmail()
+//    }
 }
