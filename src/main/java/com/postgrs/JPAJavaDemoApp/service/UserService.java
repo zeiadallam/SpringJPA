@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-   UserRepository userRepository;
+  private final UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -28,10 +28,14 @@ public class UserService {
         return userRepository.findByFirstName(name);
     }
 
-//    @Transactional
+
+    //    @Transactional
 //    public Person getById(Long id) {
 //        return userRepository.findOne(id);
 //    }
+    public Person findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 
     @Transactional
     public void deletePerson(Long personId) {
@@ -40,7 +44,13 @@ public class UserService {
 
     @Transactional
     public boolean addPerson(Person person) {
-        return userRepository.save(person) != null;
+        if (findByEmail(person.getEmail()) != null) {
+            return false;
+        } else {
+            userRepository.save(person);
+            return true;
+        }
+
     }
 
     @Transactional

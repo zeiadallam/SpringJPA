@@ -10,5 +10,7 @@ import java.util.List;
 public interface UserRepository<P> extends CrudRepository<Person, String> {
     List<Person> findByFirstName(String firstName);
 
+    Person findByEmail(String email);
+
 //    Person findOne(Long id);
 }
